@@ -1,6 +1,6 @@
 name: Basic CI Pipeline
-run-name: ${{ github.actor }} is trying to master Exercise 2
-on: []
+run-name: ${{ github.actor }} is trying to master Exercise 3
+on: [push]
 jobs:
   ci-pipeline:
     runs-on: ubuntu-latest
@@ -24,5 +24,20 @@ jobs:
       - uses: actions/upload-pages-artifact@v3 
         with: 
             path: 'dist/'
+
+      - run: echo "🍏 This job's status is ${{ job.status }}."
+
+  cd-pipeline:
+    runs-on: ubuntu-latest
+    needs: ci-pipeline
+    permissions: 
+        pages: write
+        id-token: read
+    environment: github-pages
+    steps:
+      - run: echo "🎉 Second job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+
 
       - run: echo "🍏 This job's status is ${{ job.status }}."
