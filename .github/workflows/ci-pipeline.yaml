@@ -1,5 +1,5 @@
-name: CI CD and Tests
-run-name: ${{ github.actor }} is trying to master Exercise 4
+name: CICD-and-Tests
+run-name: CI-CD-and-Tests
 on: [push]
 jobs:
   ci-pipeline:
